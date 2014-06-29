@@ -1,16 +1,109 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>fixedyour.net</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link href="lib/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+        <link href="lib/bootstrap/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+        <link href="fixedyour.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <div>TODO write content</div>
+        
+        <header>
+            <div class="buttons"><a href="/fixedyour/"><img class="btnpic" src="img/design/fixedlogo2.png" alt="logo"></a></div>
+            <div id="contactbtn" class="buttons"><a data-toggle="modal" href="#contact"><span class="glyphicon glyphicon-envelope"></span></a></div>
+            <nav id="menubtn" class="buttons"><a href="#menu" class="menu-link"><span class="glyphicon glyphicon-th-list"></span></a></nav>
+        </header>
+        <div id="wrapper" class="push">
+            <section id="carousel">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                 <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="img/carousel/hioa.jpg" alt="Html-kode">
+                        <div class="carousel-caption"><h3>Ingeniør fra Høgskolen i Oslo og Akershus</h3></div>
+                    </div>
+
+                    <div class="item">
+                        <img src="img/carousel/ingfablogo.png" alt="Logo Ingeniørfabrikken">
+                        <div class="carousel-caption"><h3>Nestleder for Ingeniørfabrikken</h3></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="carousel-caption"><h3>Noe sikkelig lurt!</h3></div>
+                        <img src="img/carousel/techygear.jpg" alt="Samsung Galaxy Gear">
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+            </section>
+
+            <section id="information">
+                <h2>Jan Thomas Hanto</h2>
+                <h4>Lærevillig, sosial og strukturert</h4>
+                <p>Oppdaget HTML på barneskolen og holdt på med dette i flere år. På videregående ble jobbet jeg med mitt første prosjekt med <strong>PHP</strong> og <strong>MySQL</strong>, men hovedsaklig som designer.</p>
+                <p>Har siden den tid fått interesse for oppsett av servere, hvor det startet med <strong>Windows Server 2000</strong>, og har utviklet seg til eksperimentering med <strong>proxmox</strong> og mer <strong>linux</strong> rettetede operativsystemer som for eksempel <strong>debian</strong> og <strong>ubuntu</strong>.</p>
+                <p>Videreutviklet ferdighetene mine i PHP og MySQL på <strong>Høgskolen i Oslo og Akershus</strong>, hvor interessen for <strong>JavaScript/jQuery</strong> også har meldt seg. Har også lært litt om andre programmeringsspråk for eksempel <strong>Java</strong>, <strong>ASP.NET</strong> og <strong>C#</strong>.</p>
+            </section>
+            <div class="clearfix"></div>
+        
+        <section>stuffs</section>
+        <footer>
+            footer
+        </footer>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Kontakt meg!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Ditt navn">
+                                <input class="form-control" type="text" placeholder="Din epost">
+                                <textarea class="form-control" placeholder="Din melding her. Maks 255 ord"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Send epost</button> <!-- Gjør til success på succes -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        <nav id="menu" class="panel" role="navigation">
+            <ul>
+                <li><a href="#">test1</a></li>
+                <li><a href="#">test2</a></li>
+                <li><a href="#">test3</a></li>
+            </ul>
+        </nav>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="lib/bigSlide/bigSlide.js"></script>
+        <script src="js/fixedyour.js"></script>
     </body>
 </html>
