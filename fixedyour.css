@@ -11,6 +11,7 @@ header{
 
 #wrapper{
     width: 100%;
+    max-width: 1400px;
     position: relative;
     top: -6em;
     z-index: 0;
@@ -95,4 +96,14 @@ header{
 
 #menu{
     margin-top: 6em;
+}
+
+footer{
+    width: 100%;
+    background-repeat: no-repeat;
+    min-height: 160px;
+    background-image:url(img/design/footertagcloud.png);
+    background-color: rgba(0,0,0,0.01);
+    position: relative;
+    z-index: 1;
 }
