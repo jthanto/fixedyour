@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width">
         <link href="lib/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
         <link href="lib/bootstrap/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+        <link href="lib/toastr/toastr.css" type="text/css" rel="stylesheet" />
         <link href="fixedyour.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
@@ -28,7 +29,7 @@
                 <!-- Wrapper for slides -->
                  <div class="carousel-inner">
                     <div class="item active">
-                        <img src="img/carousel/hioa.jpg" alt="Html-kode" width="700" height="700">
+                        <img src="img/carousel/hioa.vitnemaal.png" alt="Vitnemål" width="700" height="700">
                         <div class="carousel-caption"><h3>Ingeniør fra Høgskolen i Oslo og Akershus</h3></div>
                     </div>
 
@@ -38,8 +39,8 @@
                     </div>
 
                     <div class="item">
-                        <div class="carousel-caption"><h3>Noe sikkelig lurt!</h3></div>
-                        <img src="img/carousel/techygear.jpg" alt="Samsung Galaxy Gear"  width="700" height="700">
+                        <div class="carousel-caption"><h3>Hobby syklist</h3></div>
+                        <img src="img/carousel/sykkel.png" alt="Sykkel"  width="700" height="700">
 
                     </div>
                 </div>
@@ -53,7 +54,6 @@
                 </a>
               </div>
             </section>
-
             <section id="information">
                 <h2>Jan Thomas Hanto</h2>
                 <h4>Lærevillig, sosial og strukturert</h4>
@@ -66,7 +66,18 @@
                 <p>Oppdaget HTML på barneskolen og holdt på med dette i flere år. På videregående var jeg med på mitt første prosjekt med <strong>PHP</strong> og <strong>MySQL</strong>, men hovedsaklig som designer.</p>
                 <p>Har siden den tid fått interesse for oppsett av servere, hvor det startet med <strong>Windows Server 2000</strong>, og har utviklet seg til eksperimentering med <strong>proxmox</strong> og mer <strong>linux</strong> relaterte operativsystemer som for eksempel <strong>ubuntu</strong> og <strong>debian</strong>.</p>
                 <p>Videreutviklet ferdighetene mine i PHP og MySQL på <strong>Høgskolen i Oslo og Akershus</strong>, hvor interessen for <strong>JavaScript/jQuery</strong> også har meldt seg. Har også lært litt om andre programmeringsspråk for eksempel <strong>Java</strong>, <strong>ASP.NET</strong> og <strong>C#</strong>.</p>
-                <p></p>
+                
+                <p>Ellers har jeg nylig kjøpt meg ny <strong>sykkel</strong>, for å ta opp igjen sykkel som transportmiddel, når jeg syklet mye tidligere.</p>
+                <p>Du kan også se meg online på steam, hvor det som oftest går i <strong>Dota 2</strong> sammen med venner og bekjente. Eller du kan finne meg online på <strong>minecraft</strong>, selv om det blir mindre og mindre spilling nå om dagen.</p>
+            </section>
+            <section id="moreInfo">
+                <p> Her kommer det mer informasjon</p>    
+            </section>
+            <section id="cv">
+                <p> Her kommer det en cv</p>    
+            </section>
+            <section id="wishes">
+                <p> Her kommer det ønsker og interesser</p>    
             </section>
             <div class="clearfix"></div>
 
@@ -85,17 +96,16 @@
                         <h4 class="modal-title">Kontakt meg!</h4>
                     </div>
                     <div class="modal-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Ditt navn">
-                                <input class="form-control" type="text" placeholder="Din epost">
-                                <textarea class="form-control" placeholder="Din melding her. Maks 255 ord"></textarea>
+                        <form action="" method="post" id="cntForm" role="form" name="cntForm">  
+                            <input id="cntName" name="cntName" class="form-control" type="text" placeholder="Ditt navn">
+                            <input id="cntMail" name="cntMail" class="form-control" type="text" placeholder="Din epost">
+                            <textarea id="cntMsg" name="cntMsg" class="form-control" placeholder="Din melding her. Maks 255 ord"></textarea>
+                            <div class="modal-footer">
+                                <button id="sendMail" type="submit" class="btn btn-default">Send epost</button>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Send epost</button> <!-- Gjør til success på succes -->
-                    </div>
+                    
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -108,9 +118,12 @@
             </ul>
         </nav>
         
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="lib/jquery/jquery-1.11.1.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script src="lib/bigSlide/bigSlide.js"></script>
+        <script src="lib/jquery-validation/jquery.validate.js"></script>
+        <script src="lib/toastr/toastr.js"></script>
         <script src="js/fixedyour.js"></script>
+        <script src="js/validate.js"></script>
     </body>
 </html>
