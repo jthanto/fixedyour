@@ -39,10 +39,45 @@ $(document).ready(function() {
                 maxlength: "Maksimalt 300 tegn! "
             }
         },
-        submitHandler: function() {
-            //$("#signupform").submit();
-            //$('#cntForm').submit();
-            sendMail(event);
+        submitHandler: function(form) {
+            
+            var data = {
+                name: $(form)[0][0].value,
+                email: $(form)[0][1].value,
+                message: $(form)[0][2].value
+            };
+            console.log(data); //REMOVE ME!!!
+            
+            $.ajax({
+                type: 'POST',
+                url: 'contactmail.php',
+                //data: data,
+                //cache: false,
+                //contentType: false,
+                //processData: false,
+                success: function(data){
+                    if(data === "true"){
+                        toastr.success('Din mail er nå sendt!');
+                        $('#cntName').val('');
+                        $('#cntMail').val('');
+                        $('#cntMsg').val('');
+                        $('#contact').modal('hide');
+                    } else {
+                        toastr.error('Random error!');
+                        setTimeout(function() {
+                        $('#contact').modal('hide');
+                    }, 2000);
+                    }
+                },
+                error: function(){
+                    toastr.error('En feil oppstod, prøv igjen senere');
+                    setTimeout(function() {
+                        $('#contact').modal('hide');
+                    }, 2000);
+                    
+                    
+                }
+            });
         }
     });
 });

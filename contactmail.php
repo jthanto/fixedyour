@@ -3,13 +3,16 @@
 $to = 'jthanto@fixedyour.net';
 $subject = 'Mail fra fixedyour.net';
 $message = 'Melding!';
-    
-    //[, string $additional_headers [, string $additional_parameters ]] 
+
+if(!isset($_POST['data'])){
+    echo 'Illegal move';
+    http_response_code(403);
+}
 
 if(mail($to, $subject, $message)){
-    return "true";
+    http_response_code(200);
 } else {
-    return "false";
+    http_response_code(503);
 }
 
 ?>

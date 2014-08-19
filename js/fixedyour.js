@@ -111,6 +111,19 @@ $('#menu ul li a').click(function() {
     return false;
 };*/
 
+/*$('#sendMail').click(function(){
+    //alert( "Handler for .submit() called." );
+    //event.preventDefault();
+    var data = {
+        name: $('#ctnName').val(),
+        email: $('#ctnMail').val(),
+        message: $('#ctnMsg').val()
+    };
+    
+    console.log(data);
+});*/
+
+
 var sendMail = function(event){
     alert( "Handler for .submit() called." );
     event.preventDefault();
@@ -132,12 +145,10 @@ var sendMail = function(event){
         success: function(data){
             toastr.success('Din mail er nå sendt!');
         },
-        error: function(){
-            toastr.error('En feil oppstod!');
+        error: function(err){
+            toastr.error('En feil oppstod!' + err);
         }
-    }).done(function(data){
-        console.log(data);
-    });
+    })
     return false;
 }
 
