@@ -25,6 +25,8 @@ $(document).ready(function() {
     
 });
 
+
+//page switch logic
 $('#menu ul li a').click(function() {
                 switch ((this).text) {
                     case ("Mer info"):
