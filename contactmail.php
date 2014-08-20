@@ -37,7 +37,7 @@ else{
         echo 'Tjenesten er midlertidig utilgjengelig, prøv igjen senere.';
         //echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
-        echo "Melding sendt!";
+        echo "Melding sendt! Takk for at du tok kontakt.";
     }
 }
     
