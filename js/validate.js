@@ -46,34 +46,27 @@ $(document).ready(function() {
                 email: $(form)[0][1].value,
                 message: $(form)[0][2].value
             };
-            console.log(data); //REMOVE ME!!!
             
             $.ajax({
                 type: 'POST',
                 url: 'contactmail.php',
-                //data: data,
-                //cache: false,
-                //contentType: false,
-                //processData: false,
                 success: function(data){
-                    if(data === "true"){
-                        toastr.success('Din mail er nå sendt!');
-                        $('#cntName').val('');
-                        $('#cntMail').val('');
-                        $('#cntMsg').val('');
-                        $('#contact').modal('hide');
-                    } else {
-                        toastr.error('Random error!');
-                        setTimeout(function() {
-                        $('#contact').modal('hide');
-                    }, 2000);
-                    }
+                    toastr.success('Din mail er nå sendt!');
+                    $('#cntName').val('');
+                    $('#cntMail').val('');
+                    $('#cntMsg').val('');
+                    $('#contact').modal('hide');
                 },
-                error: function(){
-                    toastr.error('En feil oppstod, prøv igjen senere');
+                error: function(err , exception){
+                    if(err.status == 500){
+                        toastr.error(err.status+' Tjenesten er for øyeblikket utilgjengelig.');
+                    }
+                    else if(err.status == 403){
+                        toastr.error(err.status+' Ulovlig tilgang.');
+                    }
                     setTimeout(function() {
                         $('#contact').modal('hide');
-                    }, 2000);
+                    }, 5000);
                     
                     
                 }
