@@ -24,9 +24,12 @@ section{
     display:block;
 }
 
+.carousel-inner .item img{
+    width: 100%;
+}
+
 #wrapper{
     width: 100%;
-    max-width: 1400px;
     position: relative;
     top: -6em;
     z-index: 0;
