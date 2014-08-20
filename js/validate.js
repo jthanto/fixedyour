@@ -54,18 +54,22 @@ $(document).ready(function() {
                 url: 'contactmail.php',
                 data: data,
                 success: function(data){
-                    toastr.success(data+'Din mail er nå sendt!');
+                    toastr.success(data);
                     $('#cntName').val('');
                     $('#cntMail').val('');
                     $('#cntMsg').val('');
                     $('#contact').modal('hide');
                 },
                 error: function(err , exception){
+                    toastr.error(err);
                     if(err.status == 500){
-                        toastr.error(err.status+' Tjenesten er for øyeblikket utilgjengelig.');
+                        toastr.error(err.status+' Intern feil oppstod. Prøv  igjen senere.');
                     }
                     else if(err.status == 403){
                         toastr.error(err.status+' Ulovlig tilgang.');
+                    }
+                    else {
+                        toastr.error(err.status+' Ukjent feil oppstod. Prøv igjen senere.');
                     }
                     setTimeout(function() {
                         $('#contact').modal('hide');

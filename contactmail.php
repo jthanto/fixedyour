@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 <?php
 require 'lib/PHPMailer-master/PHPMailerAutoload.php';
 
-if(false){  //!isset($_POST['data'])
-    http_response_code(500);
+if(!isset($_POST['name'])){
+    http_response_code(403);
 }
 else{
     $mail = new PHPMailer();
@@ -22,7 +22,7 @@ else{
     $mail->SMTPAuth = true;
     require 'classified/smtp.details.php';
     
-    $mail->setFrom($_POST['email'], $_POST['name'] );          //AVSENDER HER
+    $mail->setFrom($_POST['email'], $_POST['name'] );               //AVSENDER HER
     //$mail->addReplyTo('jthanto@fixedyour.net', 'First Last');     //ALTERNATIV SVAR TIL ADRESSE
     $mail->addAddress('post@fixedyour.net', 'Post Fixedyour');
     $mail->Subject = 'Mail fra fixedyour.net - Eget emne her';
@@ -33,9 +33,11 @@ else{
 
     //send the message, check for errors
     if (!$mail->send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+        http_response_code(500);
+        echo 'Tjenesten er midlertidig utilgjengelig, prøv igjen senere.';
+        //echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
-        echo "Message sent!";
+        echo "Melding sendt!";
     }
 }
     
