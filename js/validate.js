@@ -46,12 +46,15 @@ $(document).ready(function() {
                 email: $(form)[0][1].value,
                 message: $(form)[0][2].value
             };
+            JSON.stringify(data)
+            
             
             $.ajax({
                 type: 'POST',
                 url: 'contactmail.php',
+                data: data,
                 success: function(data){
-                    toastr.success('Din mail er nå sendt!');
+                    toastr.success(data+'Din mail er nå sendt!');
                     $('#cntName').val('');
                     $('#cntMail').val('');
                     $('#cntMsg').val('');
