@@ -16,8 +16,6 @@ header{
 
 section{
     display: none;
-    margin-top: 6em;
-    
 }
 
 #carousel, #information{
@@ -31,7 +29,6 @@ section{
 #wrapper{
     width: 100%;
     position: relative;
-    top: -6em;
     z-index: 0;
 }
 
@@ -46,7 +43,6 @@ section{
     box-sizing: border-box;
     width: 8em;
     height: 6.2em;
-    /*background-color: #BBB;*/
     float: left;
     position: relative;
     margin-right: 0.2em;
@@ -85,12 +81,19 @@ section{
     background-color: #c1e2b3;
     float: left;
 }
-#information, #cv, #wishes{
+#information, #cv, #wishes, #projects{
     width: 50%;
     float: left;
-    padding: 6em 1em 1em 1em;
-    
+    padding: 1em 1em 1em 1em;    
 }
+
+#top-spacing{
+    height: 6.4em;
+    background-image: url(img/design/rough.diagonal.menu.png);
+    float: left;
+    width: 50%;
+}
+
 
 .carousel-caption{
     color: black;
@@ -158,10 +161,12 @@ section{
 
 
 footer{
+    padding: 1em;
+    text-align: center;
     width: 100%;
     background-repeat: no-repeat;
     min-height: 160px;
-    background-image:url(img/design/footertagcloud.png);
+    /*background-image:url(img/design/footertagcloud.png);*/
     background-color: rgba(0,0,0,0.01);
     position: relative;
     z-index: 1;

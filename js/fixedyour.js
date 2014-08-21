@@ -38,28 +38,27 @@ $(document).ready(function() {
 $('#menu ul li a').click(function(event) {
     //alert('Inside logic');
     event.preventDefault(); // long press menu still apear
-    console.log($('#menu ul li a').parent()[0]);
-    console.log($(this).parent()[0]);
     switch ($(this).parent()[0]) {
         case ($('#menu ul li a').parent()[0]):
-            $('section').hide();
-            $('#carousel').show();
-            $('#information').show();
+            $('section').not('#carousel').hide();
+            $('#information').fadeIn(400);
             break;
         case ($('#menu ul li a').parent()[1]):
-            $('section').hide();
-            $('#carousel').show();
-            $('#cv').show();
+            $('section').not('#carousel').hide();
+            $('#cv').fadeIn(400);
             break;
         case ($('#menu ul li a').parent()[2]):
-            $('section').hide();
-            $('#carousel').show();
-            $('#wishes').show();
+            $('section').not('#carousel').hide();
+            $('#wishes').fadeIn(400);
             break;
         case ($('#menu ul li a').parent()[3]):
-            location.href=$(this).attr('href');
+            $('section').not('#carousel').hide();
+            $('#projects').fadeIn(400);
             break;
         case ($('#menu ul li a').parent()[4]):
+            location.href=$(this).attr('href');
+            break;
+        case ($('#menu ul li a').parent()[5]):
             location.href=$(this).attr('href');
             break;
         default:
