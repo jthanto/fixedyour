@@ -25,8 +25,8 @@ var fixedyour = fixedyour || {};
         };
 
         var menuItems = $('nav#main_menu a');
-        var containerLeft = $('div#wrapper section#container_left');
-        var containerRight = $('div#wrapper section#container_right');
+        var containerLeft = $('main section#container_left');
+        var containerRight = $('main section#container_right');
 
         /* Functions */
         var loader = function() {
@@ -42,18 +42,23 @@ var fixedyour = fixedyour || {};
         };
 
         var buildSite = function(){
-            loadSection('carousel', function(data, err){
-                containerLeft.html(data);
-            });
             loadSection('home', function(data, err){
+                fadeContent(data, containerLeft, err)
+            });
+            loadSection('contact', function(data, err){
                 containerRight.html(data);
             });
             addListeners();
         };
 
+        var fadeContent = function(data, container, err){
+            container.hide();
+            container.html(data);
+            container.fadeIn(5);
+        };
+
         var loadSection = function(section, callback){
             section = 'templates/'+section+'.mustache';
-
             $.get(section, {}, function(data){
                 if (typeof callback == 'function'){
                     callback(data);
@@ -62,9 +67,9 @@ var fixedyour = fixedyour || {};
         };
 
         var loadPage = function(){
-            console.log($(this));
-            console.log($(this).attr('data-page'));
             loadSection($(this).attr('data-page'), function(data, err){
+                console.log(data);
+                console.log(containerRight);
                 containerRight.html(data)
             });
         };
