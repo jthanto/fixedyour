@@ -63,6 +63,7 @@ header nav#main_menu a {
     text-align: center;
 }
 
+
 header nav#main_menu a:last-of-type{
     border-right: #c2f1ff 1px solid;
 }
@@ -74,6 +75,25 @@ header nav#main_menu a:hover{
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition:.5s;
+}
+
+header nav#main_menu a div.menu-item span.icon {
+    position: relative;
+    width: 24px;
+    height:24px;
+    background-size: auto 100%;
+    margin-right: 4px;
+    margin-top: 5px;
+}
+
+header nav#main_menu a div.menu-item span.menu-text {
+    height: 24px;
+    position: relative;
+    top: -5px;
+}
+
+header nav#main_menu a div.menu-item {
+    margin: 0 auto;
 }
 
 main{

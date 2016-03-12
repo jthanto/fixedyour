@@ -1,5 +1,5 @@
 .icon{
-    background-size: auto 80%;
+    display: inline-block;/*display: block;*/
     background: no-repeat center left;
 }
 
