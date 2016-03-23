@@ -6,7 +6,7 @@ var fixedyour = fixedyour || {};
 
 (function($){
 
-    fixedyour.page = function() {
+    fixedyour.Page = function() {
 
         /* Setup variables */
         var toasterSetup = {
@@ -59,7 +59,7 @@ var fixedyour = fixedyour || {};
 
         var loadSection = function(section, callback){
             section = 'templates/'+section+'.mustache';
-            $.get(section, {}, function(data){
+            $.get(section, {page: section}, function(data){
                 if (typeof callback == 'function'){
                     callback(data);
                 }
@@ -67,10 +67,20 @@ var fixedyour = fixedyour || {};
         };
 
         var loadPage = function(){
-            loadSection($(this).attr('data-page'), function(data, err){
+            loadPageData($(this).attr('data-page'), function(data){
+
+            //loadSection($(this).attr('data-page'), function(data){
+            //    console.log(data);
+            //    console.log(containerRight);
+            //    containerRight.html(data)
+            //});
+        };
+
+        var loadPageData = function(section, callback){
+            $.get('PageLoader.php',{page:section}, function(data){
                 console.log(data);
-                console.log(containerRight);
-                containerRight.html(data)
+                containerLeft.html(data.left);
+                containerRight.html(data.right);
             });
         };
 
@@ -90,38 +100,11 @@ var fixedyour = fixedyour || {};
         }
     };
 
-    fixedyour.validation = function(){
-
+    fixedyour.Validation = function(){
+        return {};
     };
 })($);
 
 
-var pagehandler = new fixedyour.page;
-pagehandler.init();
-
-//$(document).ready(function() {
-//
-//
-
-//
-//    /* Prevent default if menu links are "#". */
-//    $('#menu ul li a').each( function() {
-//        var nav = $(this);
-//        if( nav.length > 0 ) {
-//            if( nav.attr('href') == '#' ) {
-//                //console.log(nav);
-//                $(this).click(
-//                    function(e) {
-//                        e.preventDefault();
-//                    }
-//                );
-//            }
-//        }
-//    });
-//
-//});
-//
-
-//
-//    }
-//});
+var PageHandler = new fixedyour.Page;
+PageHandler.init();
