@@ -8,7 +8,7 @@ class PageLoader{
 
     public function __construct(){
         $strPage = filter_var($_GET['page'], FILTER_SANITIZE_STRING);
-        echo json_encode(PageController::loadPage($strPage));
+        echo json_encode(PageController::loadPage($strPage)); //@TODO get some response thing. That would be nice
     }
 }
 

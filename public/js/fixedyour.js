@@ -64,7 +64,6 @@ var fixedyour = fixedyour || {};
         };
 
         var loadPageData = function(section, callback){
-            // console.log(loadingPage);
             if(!loadingPage){
                 loadingPage = true;
                 $.get('PageLoader.php',{page:section}, function(data){
@@ -95,8 +94,6 @@ var fixedyour = fixedyour || {};
         };
 
         var sectionSwitcher = function($displayContent) {
-                console.log('doin it');
-                console.log($displayContent);
                 $displayContent.fadeIn(200);
         };
 
