@@ -1,0 +1,11 @@
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 xml:space="preserve" viewBox="0 0 400 260">
+<g>
+	<polygon id="BG" fill="#DEA241" points="0,0 400,0 400,252 0,252"/>
+	<polygon id="TOP" fill="#ffb94b" points="2,2 200,160 398,2 398,2"/>
+	<polygon id="LEFT"  fill="#ffb94b" points="2,4 2,218 129,105"/>
+	<polygon id="RIGHT" fill="#ffb94b" points="398,4 398,218 271,105"/>
+	<polygon id="BOTTOM" fill="#ffb94b" points="200,162 130.357,106 2,220 2,250 398,250 398,220 269.643,106"/>
+	
+</g>
+</svg>

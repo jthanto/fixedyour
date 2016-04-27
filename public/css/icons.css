@@ -4,15 +4,15 @@
 }
 
 .icon-information{
-    background-image: url(/img/icon/info.png);
+    background-image: url(/img/icon/about.png);
 }
 
-.icon-page{
-    background-image: url(/img/icon/page.png);
+.icon-cv{
+    background-image: url(/img/icon/cv.png);
 }
 
-.icon-puzzle{
-    background-image: url(/img/icon/puzzle.png);
+.icon-project{
+    background-image: url(/img/icon/project.png);
 }
 
 .icon-favorite{
@@ -25,4 +25,8 @@
 
 .icon-linkedin{
     background-image: url(/img/icon/linkedin-3-32.png);
+}
+
+.icon-blog{
+    background-image: url(/img/icon/blog.png);
 }

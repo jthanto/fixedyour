@@ -12,12 +12,14 @@ class PageController {
     const PAGE_CV = 'cv';
     const PAGE_PROJECT = 'projects';
     const PAGE_ABOUT = 'about';
+    const PAGE_BLOG = 'blog';
 
     /* Constants for filepaths */
     const TPL_ABOUT = 'about.mustache';
     const TPL_CONTACT = 'contact.mustache';
     const TPL_PROJECTS = 'projects.mustache';
     const TPL_CV = 'cv.mustache';
+    const TPL_BLOG = 'blog.mustache';
     const TPL_404 = '404.mustache';
 
     const TEMPLATE_DIR = 'templates/';
@@ -33,6 +35,8 @@ class PageController {
                 return $objPage->getTemplates(self::TPL_PROJECTS);
             case self::PAGE_CV:
                 return $objPage->getTemplates(self::TPL_CV);
+            case self::PAGE_BLOG:
+                return $objPage->getTemplates(self::TPL_BLOG);
             default:
                 return $objPage->getTemplates(self::TPL_404);
         }

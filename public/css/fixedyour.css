@@ -172,11 +172,11 @@ div#profile div#image_container img:last-of-type{
 }
 
 div#profile div#contact{
-    background:
-        url('/img/design/mail.svg')
-        100% 100% / cover
-        no-repeat,
-        fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-image: url('/img/design/mail.svg');
+    background-clip: padding-box content-box;
 
     /*background:*/
     /*url('')*/
@@ -190,7 +190,7 @@ div#profile div#contact{
     /*padding: 0.2em 0.1em 2em 0.1em;*/
     color: #404040;
     width: 100%;
-    height: 500px;
+    height: 260px;
 }
 
 div#profile div#contact h3{
