@@ -24,9 +24,13 @@ var fixedyour = fixedyour || {};
             "hideMethod": "fadeOut"
         };
 
+        var loadingPage = false;
+
         var menuItems = $('nav#main_menu a');
         var containerLeft = $('main section#container_left');
         var containerRight = $('main section#container_right');
+        var containerCenter = $('main section#container_center');
+        var allContainers = $('main section');
 
         /* Functions */
         var loader = function() {
@@ -36,53 +40,66 @@ var fixedyour = fixedyour || {};
         var initialize = function() {
             buildSite();
             startQuotes();
-            //addBigSlide
-            //addMenuSlide();
             //doMagic
         };
 
         var buildSite = function(){
-            loadSection('home', function(data, err){
-                fadeContent(data, containerLeft, err)
-            });
-            loadSection('contact', function(data, err){
-                containerRight.html(data);
-            });
+            loadPageData('home');
             addListeners();
         };
 
-        var fadeContent = function(data, container, err){
-            container.hide();
-            container.html(data);
-            container.fadeIn(5);
+        var loadPage = function(){
+            $(this).blur();
+            var $menuItem = getActiveMenuItem();
+            if(!$(this).hasClass('active'))
+            {
+                loadPageData($(this).attr('data-page'));
+                $menuItem.removeClass('active');
+                $(this).addClass('active');
+            }
         };
 
-        var loadSection = function(section, callback){
-            section = 'templates/'+section+'.mustache';
-            $.get(section, {page: section}, function(data){
-                if (typeof callback == 'function'){
-                    callback(data);
+        var getActiveMenuItem = function() {
+            return $('nav#main_menu a.active');
+        };
+
+        var loadPageData = function(section, callback){
+            // console.log(loadingPage);
+            if(!loadingPage){
+                loadingPage = true;
+                $.get('PageLoader.php',{page:section}, function(data){
+                    var sections = $.parseJSON(data);
+                    if(typeof sections == 'object'){
+                        applyPageData(sections);
+                    }
+                    loadingPage = false;
+                });
+            }
+        };
+
+        var applyPageData = function (sections){
+            allContainers.fadeOut(200).promise().done(function() {
+                switch (sections.length) {
+                    case 1:
+                        containerCenter.html(sections[0]);
+                        sectionSwitcher(containerCenter);
+                        break;
+                    case 2:
+                    default:
+                        containerLeft.html(sections[0]);
+                        containerRight.html(sections[1]);
+                        sectionSwitcher(allContainers.not('#container_center'));
+                        break;
                 }
             });
         };
 
-        var loadPage = function(){
-            loadPageData($(this).attr('data-page'), function(data){
-
-            //loadSection($(this).attr('data-page'), function(data){
-            //    console.log(data);
-            //    console.log(containerRight);
-            //    containerRight.html(data)
-            //});
+        var sectionSwitcher = function($displayContent) {
+                console.log('doin it');
+                console.log($displayContent);
+                $displayContent.fadeIn(200);
         };
 
-        var loadPageData = function(section, callback){
-            $.get('PageLoader.php',{page:section}, function(data){
-                console.log(data);
-                containerLeft.html(data.left);
-                containerRight.html(data.right);
-            });
-        };
 
         var addListeners = function(){
             menuItems.click(loadPage);

@@ -46,14 +46,14 @@ header nav#main_menu{
     position: absolute;
     bottom: 0;
     /*background-color: rgb(0 ,66,117);*/
-    background-color: #ADD8E6;
-    border-top: #c2f1ff 1px solid;
-    border-bottom: #c2f1ff 1px solid;
+    background-color: #ffb94b;
+    border-top: #DEA241 1px solid;
+    border-bottom: #DEA241 1px solid;
     /*border-bottom: #8fc7ff 1px solid;*/
 }
 
 header nav#main_menu a {
-    border-left: #c2f1ff 1px solid;
+    border-left: #DEA241 1px solid;
     color: #404040;
     padding: 10px 10px 10px 10px;
     background-size: auto 60%;
@@ -61,20 +61,25 @@ header nav#main_menu a {
     flex: 1;
     font-weight: bold;
     text-align: center;
+    outline: 0;
 }
 
 
 header nav#main_menu a:last-of-type{
-    border-right: #c2f1ff 1px solid;
+    border-right: #DEA241 1px solid;
 }
 
-header nav#main_menu a:hover{
-    background-color: #afe0be;
+header nav#main_menu a:hover, header nav#main_menu a.active{
+    background-color: #ffd18b;
     text-decoration: none;
-    -o-transition:.5s;
-    -moz-transition:.5s;
-    -webkit-transition:.5s;
+    -o-transition:.75s;
+    -moz-transition:.75s;
+    -webkit-transition:.75s;
     transition:.5s;
+}
+
+header nav#main_menu a:focus {
+    text-decoration: none;
 }
 
 header nav#main_menu a div.menu-item span.icon {
@@ -114,6 +119,12 @@ section#container_left{
 }
 section#container_right{
     flex: 1;
+}
+
+section#container_center{
+    max-width: 100%;
+    flex: 1;
+    display: none;
 }
 
 footer{
@@ -161,9 +172,25 @@ div#profile div#image_container img:last-of-type{
 }
 
 div#profile div#contact{
-    background-color: #ADD8E6;
-    padding: 0.2em 0.1em 2em 0.1em;
+    background:
+        url('/img/design/mail.svg')
+        100% 0 / cover
+        no-repeat,
+        fixed;
+
+    /*background:*/
+    /*url('/vesuv/portal/_extensions/Vesuv/Client/Portal/_img/background.16.9.jpg')*/
+    /*100% 0 / cover  !* position / size *!*/
+    /*no-repeat                !* repeat *!*/
+    /*fixed                    !* attachment *!*/
+    /*padding-box              !* origin *!*/
+    /*content-box              !* clip *!*/
+    /*#FFF;                     !* color *!*/
+    /*background-color: #ADD8E6;*/
+    /*padding: 0.2em 0.1em 2em 0.1em;*/
     color: #404040;
+    width: 400px;
+    height: 500px;
 }
 
 div#profile div#contact h3{
@@ -174,6 +201,7 @@ div#profile div#contact h3{
 
 div#profile div#contact input{
     background-color: #FFF;
+    opacity: 0.5;
     border: none;
     width: 85%;
     color: #404040;
@@ -183,6 +211,7 @@ div#profile div#contact input{
 
 div#profile div#contact textarea{
     width: 85%;
+    opacity: 0.5;
     background-color: #FFF;
     border: none;
     color: #404040;
@@ -192,6 +221,7 @@ div#profile div#contact textarea{
 }
 
 div#profile div#contact button{
+    opacity: 0.5;
     width: 85%;
     background-color: #FFF;
     border: none;

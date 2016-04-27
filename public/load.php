@@ -1,7 +1,3 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jthanto
- * Date: 13.02.2016
- * Time: 13:16
- */
+
+require_once __DIR__.'/../vendor/autoload.php';
