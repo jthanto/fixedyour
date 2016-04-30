@@ -198,67 +198,137 @@ div#profile{
 
 div#profile div#image_container{
     display: flex;
+    flex-direction: row;
     width: 100%;
+    /*height: 1%;*/
+    /*max-height: 500px;*/
 }
 
-div#profile div#image_container img{
-    flex: 1;
-    /*border: #ADD8E6 5px solid;*/
+div#profile div#image_container div.image-frame{
+    width: 33.333%;
+    /*height: auto;*/
     border-top: #ffd18b 5px solid;
     border-bottom: #ffd18b 5px solid;
     border-left: #ffd18b 5px solid;
-    margin-bottom: 1em;
-    flex-basis: 33%;
+    vertical-align: center;
 }
 
-div#profile div#image_container img:last-of-type{
+div#profile div#image_container div.image-frame img{
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+
+
+div#profile div#image_container div.image-frame:last-of-type{
     border-right: #ffd18b 5px solid;
 }
 
 div#profile div#contact{
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: 0;
-    background-image: url('/img/design/mail.svg');
-    background-clip: content-box;
     color: #404040;
     width: 100%;
-    height: 260px;
+    max-width: 450px;
+    margin: 1em auto 1em auto;
+    border: #DEA241 5px solid;
+    background-color: #FFD18B;
+    /*height: 260px;*/
 }
 
 div#profile div#contact h3{
-    padding: 0;
+    padding: 0.75em 0 0 0;
     margin: 0;
     text-align: center;
 }
 
 div#profile div#contact input{
-    background-color: #FFF;
-    opacity: 0.5;
-    border: none;
-    width: 85%;
+    background-color: rgba(255,255,255,0);
+    border: #ffd18b 2px solid;
+    width: 100%;
     color: #404040;
     margin: 1px auto;
     display: block;
+    border-bottom: #DEA241 2px solid;
+}
+
+div#profile div#contact input:focus{
+    border-bottom: rgba(255,255,255,0.5) 2px solid;
 }
 
 div#profile div#contact textarea{
-    width: 85%;
-    opacity: 0.5;
-    background-color: #FFF;
-    border: none;
+    background-color: rgba(255,255,255,0.25);
+    width: 100%;
+    border: #ffd18b 2px solid;
     color: #404040;
     margin: 1px auto;
     display: block;
     resize: none;
+
 }
 
-div#profile div#contact button{
-    opacity: 0.5;
-    width: 85%;
-    background-color: #FFF;
+/*div#profile div#contact button#btnContactSend{*/
+    /*display: inline-block;*/
+    /*background-color: rgba(255,255,255,0.25);*/
+    /*border: #ffd18b 2px solid;*/
+    /*color: #404040;*/
+    /*float: right;*/
+    /*margin-right: 1%;*/
+    /*margin-top: 1%;*/
+    /*padding: 4% 3%;*/
+/*}*/
+
+.stamp {
+    float: right;
+    margin-top: 1%;
+    margin-right: 1%;
     border: none;
-    color: #404040;
-    margin: 1px auto;
+    padding: 2% 3%;
+
+    width: 20%;
+    height: 100%;
+    background: white;
+    position: relative;
+    /*filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5));*/
+    /*-webkit-filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.5));*/
+     background: radial-gradient(
+            transparent 0,
+            transparent 30%,
+            #DEA241 30%,
+            #DEA241
+    );
+
+    background-size: 10% 25%;
+    background-position: -5% -50%;
+}
+
+.stamp div {
+    width: 122%;
+    height: 37px;
+    background-color: #FFD18B;
+    padding: 10% 0;
+    margin-left: -10%;
+}
+
+
+div#contactContent, div#contactRecipient{
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+    padding: 1% 3%;
+}
+
+div#contactContent{
+    border-right: #DEA241 2px solid;
+
+}
+
+div#contact div.clearfix:last-of-type{
+    /*height: 0.5%;*/
     display: block;
+    font-size: 50%;
+}
+
+.clearfix{
+    display: block;
+    clear: both;
 }

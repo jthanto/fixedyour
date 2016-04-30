@@ -1,13 +1,28 @@
 <div id="profile">
     <div id="image_container">
-        <img id="profile_pic" src="/img/profile/hioa.vitnemaal.png" alt="Vitnemål HiOA"/>
-        <img id="profile_pic" src="/img/profile/janthomashanto.jpg" alt="Jan Thomas Hanto"/> <!-- @TODO legg til karusell! :D :O :D -->
-        <img id="profile_pic" src="/img/profile/sykkel.png" alt="Sykkel"/>
+        <div class="image-frame"><img id="profile_pic" src="/img/profile/hioa.vitnemaal.png" alt="Vitnemål HiOA"/></div>
+        <div class="image-frame"><img id="profile_pic" src="/img/profile/janthomashanto.jpg" alt="Jan Thomas Hanto"/></div> <!-- @TODO legg til karusell! :D :O :D -->
+        <div class="image-frame"><img id="profile_pic" src="/img/profile/sykkel.png" alt="Sykkel"/></div>
     </div>
+
     <div id="contact">
+        <div id="contactHeader">
+            <button id="btnContactSend" class="stamp"><div> SEND </div></button>
+        </div>
         <h3>Kontakt meg!</h3>
-        <input placeholder="din@epost.no" />
-        <textarea rows="4" placeholder="Skriv en hyggelig melding"></textarea>
-        <button>Send</button>
+
+        <div class="clearfix"></div>
+
+        <div id="contactContent">
+            <textarea rows="4" placeholder="Skriv en hyggelig melding"></textarea>
+        </div>
+
+        <div id="contactRecipient">
+            <input placeholder="Navn" />
+            <input placeholder="din@epost.no" />
+            <input placeholder="evt. annet" />
+        </div>
+        <div class="clearfix">&nbsp;</div>
     </div>
+
 </div>
