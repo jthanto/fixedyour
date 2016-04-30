@@ -66,7 +66,7 @@ var fixedyour = fixedyour || {};
         var loadPageData = function(section, callback){
             if(!loadingPage){
                 loadingPage = true;
-                $.get('PageLoader.php',{page:section}, function(data){
+                $.get('load.php',{page:section}, function(data){
                     var sections = $.parseJSON(data);
                     if(typeof sections == 'object'){
                         applyPageData(sections);
