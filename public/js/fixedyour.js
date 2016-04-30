@@ -32,6 +32,7 @@ var fixedyour = fixedyour || {};
         var containerCenter = $('main section#container_center');
         var allContainers = $('main section');
 
+
         /* Functions */
         var loader = function() {
             alert('heyoo');
@@ -40,6 +41,7 @@ var fixedyour = fixedyour || {};
         var initialize = function() {
             buildSite();
             startQuotes();
+            initContact();
             //doMagic
         };
 
@@ -104,10 +106,28 @@ var fixedyour = fixedyour || {};
 
         var startQuotes = function(){
             var setup = {url: 'quotes'};
-            $.ajax({
-
-            });
+            // $.ajax({
+            //
+            // });
         };
+
+        var initContact = function(){
+            $(document).on('click', '#btnContactSend', function(){
+                $.ajax('load.php', {
+                    method: 'post',
+                    data: {
+                        action:'mail',
+                        name:$('#contactName').val(),
+                        from:$('#contactMail').val(),
+                        other:$('#contactOther').val(),
+                        content:$('#contactMessage').val()
+                    },
+                    success: function(){
+                        console.log('success');
+                    }});
+                });
+        };
+
 
         return {
             init: initialize
