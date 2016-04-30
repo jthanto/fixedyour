@@ -113,17 +113,28 @@ var fixedyour = fixedyour || {};
 
         var initContact = function(){
             $(document).on('click', '#btnContactSend', function(){
+                var postData = {
+                    action:'contact_mail',
+                    name:$('#contactName').val(),
+                    from:$('#contactFrom').val(),
+                    other:$('#contactOther').val(),
+                    content:$('#contactContent').find('textarea').val()
+                };
+
                 $.ajax('load.php', {
                     method: 'post',
-                    data: {
-                        action:'mail',
-                        name:$('#contactName').val(),
-                        from:$('#contactMail').val(),
-                        other:$('#contactOther').val(),
-                        content:$('#contactMessage').val()
+                    dataType: 'json',
+                    data: postData,
+                    success: function(response){
+                        var data = $.parseJSON(response);
+                        if(data.status === 'success'){
+                            alert('YAY, takk!');
+                        } else if (data.status === 'error'){
+                            alert('Buuuu, det gikk heller dårlig');
+                        }
                     },
-                    success: function(){
-                        console.log('success');
+                    error: function(){
+                        alert('Buuuu, ukjent feil :(');
                     }});
                 });
         };

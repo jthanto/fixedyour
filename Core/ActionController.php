@@ -9,9 +9,10 @@ use fixedyour\Core\Mail\Mail;
  */
 class ActionController{
 
-    public static function doAction($strAction){
+    public static function doAction($action){
+        
         $objThis = new self();
-        switch($strAction) {
+        switch($action) {
             case 'contact_mail':
                 $objThis->sendContactMail();
             break;

@@ -7,7 +7,9 @@
             "email": "jthanto@fixedyour.net"
         }
     ],
-    "require": {},
+    "require": {
+        "phpmailer/phpmailer": "^5.2"
+    },
     "autoload": {
         "classmap":[
           "Core",
