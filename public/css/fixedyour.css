@@ -20,7 +20,7 @@ header{
     display: block;
     width: 100%;
     min-height: 20em;
-    background: url(../img/design/header_image.jpg) 50% 87%;
+    background: url(/img/design/header_image.jpg) 50% 87%;
     background-size: 100% auto;
     flex: 0 1 20em;
 }
