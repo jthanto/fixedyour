@@ -125,8 +125,7 @@ var fixedyour = fixedyour || {};
                     method: 'post',
                     dataType: 'json',
                     data: postData,
-                    success: function(response){
-                        var data = $.parseJSON(response);
+                    success: function(data){
                         if(data.status === 'success'){
                             alert('YAY, takk!');
                         } else if (data.status === 'error'){

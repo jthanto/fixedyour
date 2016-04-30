@@ -20,11 +20,20 @@ class ActionController{
     }
 
     private function sendContactMail(){
-        $content = $_POST['content'].' <br> Annet:'.$_POST['other'];
+        if($_POST['other']){
+            $content = $_POST['content'].' <br> Annet:'.$_POST['other'];
+        } else {
+            $content = $_POST['content'];
+        }
+        if($_POST['name']){
+            $strSubject = 'Ny melding fra '.$_POST['name'];
+        } else {
+            $strSubject = 'Ny melding fra Ukjent Person';
+        }
         $mail = new Mail(
             'post@fixedyour.net',
             $_POST['from'],
-            'Ny melding fra '.$_POST['name'],
+            $strSubject,
             $content
         );
         $mail->sendMail();

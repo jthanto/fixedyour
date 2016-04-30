@@ -81,20 +81,20 @@ class Mail {
             $mail->addAddress($mailAddress);
         }
         $mail->addReplyTo($this->fromMail);
-        $mail->isHTML(false);
         $mail->Subject = $this->subject;
         $mail->Body = $this->content;
 
-        $response = [];
-        if(!$mail->send()){
-            $response['status']= 'error';
-            $response['message']= $mail->ErrorInfo;
-        } else {
-            $response['status'] = 'success';
-            $response['message'] = 'Mail sent!';
+        if($this->validateMailDetails()){
+            $response = [];
+            if(!$mail->send()){
+                $response['status']= 'error';
+                $response['message']= $mail->ErrorInfo;
+            } else {
+                $response['status'] = 'success';
+                $response['message'] = 'Mail sent!';
+            }
+            echo json_encode($response);
         }
-
-        echo json_encode($response);
     }
 
     /**
@@ -109,6 +109,7 @@ class Mail {
         $mail->Password = SMTP_PASSWORD;
         $mail->SMTPSecure = "tls";
         $mail->Port = SMTP_PORT;
+        $mail->isHTML(true);
     }
 
     /**
@@ -128,28 +129,33 @@ class Mail {
     /**
      * @return bool
      */
-    private function validateMail(){
-//        foreach($this->recipientMails)
-//        {
-//
-//        }
-//        if(!filter_var($this->recipient, FILTER_VALIDATE_EMAIL))
-//        {
-//            $this->errors[] = 'Recipient, is not valid email';
-//        }
-//        if(!filter_var($this->from, FILTER_VALIDATE_EMAIL))
-//        {
-//            $this->errors[] = 'Sender, is not valid email';
-//        }
-//        if(empty($this->subject))
-//        {
-//            $this->errors[] = 'Subject is empty';
-//        }
-//        if(empty($this->content))
-//        {
-//            $this->errors[] = 'Content is empty';
-//        }
-        return empty($this->errors);
+    private function validateMailDetails(){
+        foreach($this->recipientMails as $recipient) {
+            if(!filter_var($recipient, FILTER_VALIDATE_EMAIL)){
+                $this->errors['message']['recipients'][] = $recipient.' is not a valid email address';
+            }
+        }
+        if(!filter_var($this->fromMail, FILTER_VALIDATE_EMAIL))
+        {
+            $this->errors['message']['sender'][] = $this->fromMail.' is not a valid email address';
+        }
+        if(empty($this->subject))
+        {
+            $this->errors['message']['subject'] = 'Subject is empty';
+        }
+        if(empty($this->content))
+        {
+            $this->errors['message']['body'] = 'Content is empty';
+        }
+        
+        $hasErrors = !empty($this->errors);
+        if($hasErrors){
+            $this->errors['status'] = 'error';
+            echo json_encode($this->errors);
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
