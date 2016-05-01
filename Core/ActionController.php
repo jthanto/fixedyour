@@ -10,14 +10,11 @@ use fixedyour\Core\Actions\ContactMail;
 class ActionController{
 
     public static function doAction($action){
-        
+
         switch($action) {
             case 'contact_mail':
                 ContactMail::sendContactMail();
             break;
         }
     }
-
-    /* @TODO MOVE ALL SEND CONTACT MAIL CONTENT TO OWN CLASS */
-
 }
