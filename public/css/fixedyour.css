@@ -298,6 +298,10 @@ div#profile div#contact textarea{
     font-weight: bold;
 }
 
+#btnContactSend:focus{
+    outline-width: 0;
+}
+
 div#profile div#contact textarea:focus{
     outline-width: 0;
     border: #DEA241 1px solid;

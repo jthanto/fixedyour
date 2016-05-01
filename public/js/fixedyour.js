@@ -131,9 +131,23 @@ var fixedyour = fixedyour || {};
                     data: postData,
                     success: function(data){
                         if(data.status === 'success'){
-                            alert('YAY, takk!');
+                            $('#contactRecipient').find('input').css('border-bottom','#DEA241 2px solid');
+                            $('#contactContent').find('textarea').css('border-color','#ffd18b');
+                            alert('Takk for epost');
                         } else if (data.status === 'error'){
-                            alert('Buuuu, det gikk heller dårlig');
+                            if(data.message.body && data.message.body.length){
+                                $('#contactContent').find('textarea').css('border-color','#FF0000');
+                            }
+                            if(data.message.from && data.message.from.length){
+                                $('#contactFrom').css('border-bottom','#FF0000 2px solid');
+                            }
+
+                            if(data.message.name && data.message.name.length){
+                                $('#contactName').css('border-bottom','#FF0000 2px solid');
+                            }
+                            if(data.message.replyto && data.message.replyto.length) {
+                                $('#contactFrom').css('border-bottom','#FF0000 2px solid');
+                            }
                         }
                     },
                     error: function(){
@@ -149,7 +163,10 @@ var fixedyour = fixedyour || {};
     };
 
     fixedyour.Validation = function(){
-        return {};
+        var emptyVal = function (val){
+            return (val.length > 0)
+        };
+        return {isEmptyVal: emptyVal()};
     };
 })($);
 
