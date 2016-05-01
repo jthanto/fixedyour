@@ -1,7 +1,22 @@
 html, button, input, select, textarea{font-family: sans-serif;}
 body{margin:0;font-size:1.5em;font-family: 'Lato',sans-serif;}
 
-html, body{
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #807f7f;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #807f7f;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #807f7f;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #807f7f;
+}
+
+body{
     /*overflow-x: hidden;*/
     display: flex;
     flex-flow: column;
@@ -252,13 +267,15 @@ div#profile div#contact input{
 }
 
 div#profile div#contact input:focus{
+    outline-width: 0;
     border-bottom: rgba(255,255,255,0.5) 2px solid;
 }
 
 div#profile div#contact textarea{
+    padding:  0.5em 0.3em;
     background-color: rgba(255,255,255,0.25);
     width: 100%;
-    border: #ffd18b 2px solid;
+    border: #ffd18b 1px solid;
     color: #404040;
     margin: 1px auto;
     display: block;
@@ -266,16 +283,28 @@ div#profile div#contact textarea{
 
 }
 
-/*div#profile div#contact button#btnContactSend{*/
-    /*display: inline-block;*/
-    /*background-color: rgba(255,255,255,0.25);*/
-    /*border: #ffd18b 2px solid;*/
-    /*color: #404040;*/
-    /*float: right;*/
-    /*margin-right: 1%;*/
-    /*margin-top: 1%;*/
-    /*padding: 4% 3%;*/
-/*}*/
+#btnContactSend{
+    float: right;
+    margin-right: 1%;
+    margin-top: 1%;
+    background: url(/img/design/stamp.svg) no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    padding: 4% 6%;
+    font-weight: bold;
+}
+
+div#profile div#contact textarea:focus{
+    outline-width: 0;
+    border: #DEA241 1px solid;
+    background-color: rgba(255,255,255,0.25);
+    width: 100%;
+    color: #404040;
+    margin: 1px auto;
+    display: block;
+    resize: none;
+
+}
 
 .stamp {
     float: right;
@@ -288,15 +317,7 @@ div#profile div#contact textarea{
     height: 100%;
     background: white;
     position: relative;
-    /*filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.5));*/
-    /*-webkit-filter: drop-shadow(0px 0px 20px rgba(0,0,0,0.5));*/
-     background: radial-gradient(
-            transparent 0,
-            transparent 30%,
-            #DEA241 30%,
-            #DEA241
-    );
-
+    background: radial-gradient(transparent 0, transparent 30%, #DEA241 30%, #DEA241);
     background-size: 10% 25%;
     background-position: -5% -50%;
 }
@@ -319,11 +340,9 @@ div#contactContent, div#contactRecipient{
 
 div#contactContent{
     border-right: #DEA241 2px solid;
-
 }
 
 div#contact div.clearfix:last-of-type{
-    /*height: 0.5%;*/
     display: block;
     font-size: 50%;
 }
