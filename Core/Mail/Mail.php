@@ -41,6 +41,8 @@ class Mail {
      */
     private $errors;
 
+    private $replyTo;
+
 
     /**
      * Mail constructor.
@@ -80,7 +82,9 @@ class Mail {
         foreach($this->recipientMails as $mailAddress){
             $mail->addAddress($mailAddress);
         }
-        $mail->addReplyTo($this->fromMail);
+        if(!empty($this->fromMail)){
+            $mail->addReplyTo($this->fromMail);
+        }
         $mail->Subject = $this->subject;
         $mail->Body = $this->content;
 
@@ -101,6 +105,7 @@ class Mail {
      * @param $mail \PHPMailer
      */
     private function setupSMTP($mail){
+        $mail->addReplyTo($this->replyTo);
         $mail->SMTPDebug = SMTP_DEBUG_LEVEL;
         $mail->isSMTP();
         $mail->Host = SMTP_HOST;
@@ -147,8 +152,12 @@ class Mail {
         {
             $this->errors['message']['body'] = 'Content is empty';
         }
+        if(!empty($this->replyTo) && !filter_var($this->replyTo, FILTER_VALIDATE_EMAIL)){
+            $this->errors['message']['reply-to'] = 'Invalid email';
+        }
         
         $hasErrors = !empty($this->errors);
+
         if($hasErrors){
             $this->errors['status'] = 'error';
             echo json_encode($this->errors);
@@ -170,6 +179,10 @@ class Mail {
      */
     public function getErrors(){
         return $this->errors;
+    }
+
+    public function setReplyTo($replyTo){
+        $this->replyTo = $replyTo;
     }
 
 

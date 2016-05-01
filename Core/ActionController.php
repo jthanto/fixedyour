@@ -31,11 +31,12 @@ class ActionController{
             $strSubject = 'Ny melding fra Ukjent Person';
         }
         $mail = new Mail(
-            'post@fixedyour.net',
-            $_POST['from'],
+            DEFAULT_FROM_MAIL,
+            DEFAULT_FROM_MAIL,
             $strSubject,
             $content
         );
+        $mail->setReplyTo($_POST['from']);
         $mail->sendMail();
     }
 
