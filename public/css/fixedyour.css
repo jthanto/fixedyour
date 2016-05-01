@@ -1,5 +1,11 @@
 html, button, input, select, textarea{font-family: sans-serif;}
-body{margin:0;font-size:1.5em;font-family: 'Lato',sans-serif;}
+body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-size:1.5em;
+    font-family: 'Lato',sans-serif;
+}
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: #807f7f;
@@ -16,19 +22,16 @@ body{margin:0;font-size:1.5em;font-family: 'Lato',sans-serif;}
     color:    #807f7f;
 }
 
-body{
-    /*overflow-x: hidden;*/
-    display: flex;
-    flex-flow: column;
-    height: 100%;
+div#wrapper{
+    min-height:100%;
+    position:relative;
+    display: block;
 }
 
 header, main, footer{
     width: 100%;
     min-width: 600px;
 }
-
-
 
 header{
     position: relative;
@@ -37,7 +40,7 @@ header{
     min-height: 20em;
     background: url(/img/design/header_image.jpg) 50% 87%;
     background-size: 100% auto;
-    flex: 0 1 20em;
+    padding: 1em 0;
 }
 
 header a#logo{
@@ -60,18 +63,14 @@ header a#logo:hover {
 }
 
 header nav#main_menu{
-    /*margin: 10px auto;*/
-    /*margin-bottom: 0;*/
     width: 100%;
     padding: 0 12.5%;
     display: flex;
     position: absolute;
     bottom: 0;
-    /*background-color: rgb(0 ,66,117);*/
     background-color: #ffb94b;
     border-top: #DEA241 1px solid;
     border-bottom: #DEA241 1px solid;
-    /*border-bottom: #8fc7ff 1px solid;*/
 }
 
 header nav#main_menu a {
@@ -124,15 +123,14 @@ header nav#main_menu a div.menu-item {
 }
 
 main{
-    padding: 0 12.5%;
+    padding: 0 12.5% 12em 12.5%;
     margin-top: 48px;
     width: 100%;
-    position: relative;
     display: flex;
-    flex: 1 1 auto;
 }
 
 main section{
+    display: block;
     padding: 0.2em;
     max-width: 50%;
 }
@@ -155,11 +153,17 @@ footer{
     padding: 1em;
     text-align: center;
     width: 100%;
-    min-height: 140px;
+    height: 10em;
     background: rgba(255, 209, 139, 0.5) no-repeat;
     /*color: #ffd18b*/
-    position: relative;
-    flex: 0 1 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    /*height:100px;*/
+    /*position:absolute;*/
+    /*bottom:0;*/
+    /*left:0;*/
 }
 
 footer section#quotes blockquote {
@@ -305,31 +309,6 @@ div#profile div#contact textarea:focus{
     resize: none;
 
 }
-
-.stamp {
-    float: right;
-    margin-top: 1%;
-    margin-right: 1%;
-    border: none;
-    padding: 2% 3%;
-
-    width: 20%;
-    height: 100%;
-    background: white;
-    position: relative;
-    background: radial-gradient(transparent 0, transparent 30%, #DEA241 30%, #DEA241);
-    background-size: 10% 25%;
-    background-position: -5% -50%;
-}
-
-.stamp div {
-    width: 122%;
-    height: 37px;
-    background-color: #FFD18B;
-    padding: 10% 0;
-    margin-left: -10%;
-}
-
 
 div#contactContent, div#contactRecipient{
     box-sizing: border-box;

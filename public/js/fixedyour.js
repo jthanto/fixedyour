@@ -50,7 +50,7 @@ var fixedyour = fixedyour || {};
             addListeners();
         };
 
-        var loadPage = function(){
+        var loadPage = function(e){
             $(this).blur();
             var $menuItem = getActiveMenuItem();
             if(!$(this).hasClass('active'))
@@ -59,6 +59,7 @@ var fixedyour = fixedyour || {};
                 $menuItem.removeClass('active');
                 $(this).addClass('active');
             }
+            e.stopPropagation();
         };
 
         var getActiveMenuItem = function() {
@@ -92,7 +93,10 @@ var fixedyour = fixedyour || {};
                         sectionSwitcher(allContainers.not('#container_center'));
                         break;
                 }
+                // $('footer').css({position: 'absolute', left:0, bottom: 0});
+                // console.log($('footer'))
             });
+
         };
 
         var sectionSwitcher = function($displayContent) {
