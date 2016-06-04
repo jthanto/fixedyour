@@ -33,24 +33,30 @@ header, main, footer{
     min-width: 600px;
 }
 
-header{
-    position: relative;
+header div#backdrop{
+    position: fixed;
+    left: 0;
+    right: 0;
     display: block;
     width: 100%;
-    min-height: 20em;
+    min-height: 15em;
     background: url(/img/design/header_image.jpg) 50% 87%;
+    filter: opacity(0.6);
+    -webkit-filter: opacity(0.6);
     background-size: 100% auto;
     padding: 1em 0;
+    z-index: 1;
 }
 
 header a#logo{
     position: relative;
-    background: url(/img/design/fixedlogo2.png) no-repeat center;
-    background-size: auto 80%;
-    width: 50%;
-    height: 10em;
+    background: url(/img/design/fixedyour.logo.black.svg) no-repeat center;
+    background-size: auto 100%;
+    width: auto;
+    height: 15em;
     margin: 0 auto 10px auto;
     display: block;
+    z-index: 2;
 }
 
 header a#logo:hover {
@@ -66,8 +72,8 @@ header nav#main_menu{
     width: 100%;
     padding: 0 12.5%;
     display: flex;
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    margin-top: -0.7em;
     background-color: #ffb94b;
     border-top: #DEA241 1px solid;
     border-bottom: #DEA241 1px solid;
