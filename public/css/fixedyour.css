@@ -160,6 +160,9 @@ section#container_right{
 section#container_center{
     max-width: 100%;
     flex: 1;
+}
+
+section.hide{
     display: none;
 }
 

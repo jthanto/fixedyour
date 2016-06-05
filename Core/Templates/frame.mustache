@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hanto, Jan Thomas - fixedyour.net</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link href="/lib/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+        <link href="/lib/bootstrap/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+        <link href="/lib/toastr/toastr.css" type="text/css" rel="stylesheet" />
+        <link href="/css/fixedyour.css" type="text/css" rel="stylesheet" />
+        <link href="/css/icons.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <header>
+                <div id="backdrop"></div>
+                <a id="logo" href="/"></a>
+                <nav id="main_menu">
+                    <!-- @TODO Use :before and :after for making icons appear in front of item. -->
+                        <a data-page="about" {{#about_active}}class="active"{{/about_active}} href="/"><div class="menu-item"><span class="icon icon-information"></span><span class="menu-text">OM</span></div></a>
+                        <a data-page="cv" {{#cv_active}}class="active"{{/cv_active}} href="/cv"><div class="menu-item"><span class="icon icon-cv"></span><span class="menu-text">CV</span></div></a>
+                        <a data-page="blog" {{#blog_active}}class="active"{{/blog_active}} href="/blog"><div class="menu-item"><span class="icon icon-blog"></span><span class="menu-text">BLOG</span></div></a>
+                        <a data-page="projects" {{#projects_active}}class="active"{{/projects_active}} href="/projects"><div class="menu-item"><span class="icon icon-project"></span><span class="menu-text">PROSJEKT</span></div></a>
+                        <a id="github" href="http://www.github.com/jthanto"><div class="menu-item"><span class="icon icon-github"></span><span class="menu-text">GITHUB</span></div></a>
+                        <a href="http://no.linkedin.com/pub/jan-thomas-hanto/7a/760/a69/"><div class="menu-item"><span class="icon icon-linkedin"></span><span class="menu-text">LINKEDIN</span></div></a>
+                </nav>
+            </header>
+            <main>
+                <section id="container_center" class="{{#center}}show{{/center}}{{^center}}hide{{/center}}">
+                    {{{center}}}
+                </section>
+                <section id="container_left" class="{{#left}}show{{/left}}{{^left}}hide{{/left}}">
+                    {{{left}}}
+                </section>
+                <section id="container_right" class="{{#right}}show{{/right}}{{^right}}hide{{/right}}">
+                    {{{right}}}
+                </section>
+            </main>
+            <div id="error_drops"></div>
+            <footer>
+                <section id="quotes">
+                    <blockquote id="quote">Machines aren't capable of evil. Humans make them that way.<cite id="autor">Lucca (from Chrono Trigger)</cite></blockquote>
+                </section>
+            </footer>
+        </div>
+
+        <script src="lib/jquery/jquery-1.11.1.min.js"></script>
+        <script src="lib/mustache/mustache.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="lib/jquery-validation/jquery.validate.js"></script>
+        <script src="lib/toastr/toastr.js"></script>
+        <script src="js/fixedyour.js"></script>
+        <script src="js/validate.js"></script>
+    </body>
+</html>

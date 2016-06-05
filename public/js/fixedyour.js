@@ -39,15 +39,10 @@ var fixedyour = fixedyour || {};
         };
 
         var initialize = function() {
-            buildSite();
+            addListeners();
             startQuotes();
             initContact();
             //doMagic
-        };
-
-        var buildSite = function(){
-            loadPageData('home');
-            addListeners();
         };
 
         var loadPage = function(e){
