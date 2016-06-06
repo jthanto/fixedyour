@@ -28,9 +28,6 @@ class PageController {
     const TEMPLATE_OLD_DIR = 'templates/';
     const TEMPLATE_DIR = '../Core/Templates/';
 
-    const SECTION_LEFT_RIGHT = array('left', 'right');
-    const SECTION_CENTER = array('center');
-
     public function __construct(){
         $this->mustache = new \Mustache_Engine();
     }
