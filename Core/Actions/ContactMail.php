@@ -3,6 +3,8 @@
 namespace fixedyour\Core\Actions;
 
 use fixedyour\Core\Mail\Mail;
+use fixedyour\Core\Response\Response;
+
 
 class ContactMail {
 
@@ -37,7 +39,7 @@ class ContactMail {
             $response = $this->validationErrors;
             $response['status'] = 'error';
         }
-        echo json_encode($response);
+        Response::respond($response);
 
     }
 
