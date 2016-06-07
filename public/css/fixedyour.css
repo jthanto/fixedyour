@@ -5,6 +5,26 @@ html {
     min-height: 100%;
 }
 
+h1, h2, h3, h4, h5{
+    font-weight: bold;
+}
+
+h1{
+    font-size: 2em;
+}
+
+h2{
+    font-size: 1.5em;
+}
+
+h3{
+    font-size: 1.2em;
+}
+
+h4{
+    font-size: 1em;
+}
+
 body{
     margin:0;
     padding:0;
@@ -361,4 +381,28 @@ div#contact div.clearfix:last-of-type{
 .clearfix{
     display: block;
     clear: both;
+}
+
+div#curriculumvitae div.cv-container div.left-cell{
+    width: 30%;
+    float: left;
+    text-align: right;
+}
+
+div#curriculumvitae div.cv-container div.right-cell{
+    width: 65%;
+    float: left;
+    margin-left: 2%;
+    padding-left: 2%;
+    border-left: 1px solid #FFB94B;
+}
+
+div#curriculumvitae div.cv-container div.right-cell:last-of-type{
+    padding-bottom: 1em;
+}
+
+div#curriculumvitae h3, div#curriculumvitae h4{
+    padding: 0;
+    margin: 0;
+    display: inline;
 }
