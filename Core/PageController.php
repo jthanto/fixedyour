@@ -2,6 +2,8 @@
 
 namespace fixedyour\Core;
 
+use fixedyour\Blog\Controllers\BlogController;
+
 /**
  * Class PageController
  */
@@ -21,7 +23,7 @@ class PageController {
     const TPL_CONTACT = 'contact.mustache';
     const TPL_PROJECTS = 'projects.mustache';
     const TPL_CV = 'cv.mustache';
-    const TPL_BLOG = 'blog.mustache';
+    const TPL_BLOG = 'Blog.mustache';
     const TPL_404 = '404.mustache';
     const TPL_ADMIN = 'admin.mustache';
 
@@ -34,6 +36,7 @@ class PageController {
 
     public static function loadPage($strPage)
     {
+        $strPage = strtolower($strPage);
         $page = new self();
         switch ($strPage) {
             case self::PAGE_HOME:
@@ -78,8 +81,9 @@ class PageController {
                     $renderedTemplates = array('center'=> $templates[0], self::PAGE_CV.'_active' => true);
                     break;
                 case self::PAGE_BLOG:
-                    $templates = $page->getTemplates(self::TPL_BLOG);
-                    $renderedTemplates = array('center'=> $templates[0], self::PAGE_BLOG.'_active' => true);
+                    $blog = new BlogController();
+                    $templates = $blog->getFrontPage();
+                    $renderedTemplates = array('center'=> $templates, self::PAGE_BLOG.'_active' => true);
                     break;
             }
         }

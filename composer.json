@@ -13,8 +13,9 @@
     },
     "autoload": {
         "classmap":[
-          "Core",
-          "public"
+            "Core",
+            "Blog",
+            "public"
         ],
         "psr-4": {
           "fixedyour\\": "/"
