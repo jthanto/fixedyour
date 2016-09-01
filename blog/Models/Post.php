@@ -3,8 +3,9 @@
 namespace fixedyour\Blog\Models;
 
 use fixedyour\Core\Database\Database;
+use fixedyour\Core\Database\Row;
 
-class Post {
+class Post extends Row{
 
 
     private $DB;
@@ -12,7 +13,7 @@ class Post {
      * Blog constructor.
      */
     public function __construct() {
-        $this->DB = new Database('fixedyour_blog');
+        parent::__construct(new Database('fixedyour_blog'));
     }
 
     /**

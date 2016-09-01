@@ -32,8 +32,8 @@ class BlogController {
     /**
      *
      */
-    public function getFrontPageArticles($limit, $asc){
-
+    public function getFrontPageArticles($limit=5, $sort='asc'){
+        return 'string';
     }
 
     /**
@@ -49,7 +49,7 @@ class BlogController {
      *
      */
     public function getFrontPage(){
-        $articles = $this->$this->getFrontPageArticles();
+        $articles = $this->getFrontPageArticles();
         return 'Forside for bloggeeeeeen, bloggen den er bare miiiiiin!!!!';
     }
 }
