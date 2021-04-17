@@ -27,11 +27,25 @@ class ContactMail {
                 $mailDetails['body']
             );
             $mail->setReplyTo($mailDetails['replyto']);
+
+	try{
+		$status = $mail->sendMail();
+//		var_dump($mail->ErrorInfo);
+		var_dump($status);
+//		var_dump($mail);
+
+	} catch(phpmailerException $e){
+		die('do i even fail?');
+		echo $e->errorMessage();
+	}
+
+		die();
             if($mail->sendMail())
             {
                 $response['status'] = 'success';
                 $response['message'] = 'Mail sent!';
             } else {
+		$mail->getError();
                 $response['status']= 'error';
                 $response['message']= 'Feil med meilsending';
             }

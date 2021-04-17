@@ -17,7 +17,7 @@ class BlogController {
      * Blog constructor.
      */
     public function __construct() {
-        //$this->DB = new Database('fixedyour_blog');
+        $this->DB = new Database('fixedyour_blog');
     }
 
     /**

@@ -88,7 +88,12 @@ class Mail {
         }
         $mail->Subject = $this->subject;
         $mail->Body = $this->content;
-        return $mail->send();
+        $status = $mail->send();
+	if(!$status){
+		echo $mail->ErrorInfo;	
+	} else {
+		return true;
+	}
     }
 
     /**
@@ -102,7 +107,7 @@ class Mail {
         $mail->SMTPAuth = true;
         $mail->Username = SMTP_USERNAME;
         $mail->Password = SMTP_PASSWORD;
-        $mail->SMTPSecure = "tls";
+        $mail->SMTPSecure = "ssl";
         $mail->Port = SMTP_PORT;
         $mail->isHTML(true);
     }

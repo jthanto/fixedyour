@@ -36,6 +36,7 @@ class PageController {
 
     public static function loadPage($strPage)
     {
+
         $strPage = strtolower($strPage);
         $page = new self();
         switch ($strPage) {
@@ -81,10 +82,15 @@ class PageController {
                     $renderedTemplates = array('center'=> $templates[0], self::PAGE_CV.'_active' => true);
                     break;
                 case self::PAGE_BLOG:
-                    $blog = new BlogController();
-                    $templates = $blog->getFrontPage();
+                    //$blog = new BlogController();
+                    //$templates = $blog->getFrontPage();
+		    $templates = 'Heiaaa bloggen';
                     $renderedTemplates = array('center'=> $templates, self::PAGE_BLOG.'_active' => true);
                     break;
+		case 'timeout':
+			sleep(60);
+//			http_response_code(504);
+//			echo 'hei'; die;
             }
         }
 

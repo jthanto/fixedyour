@@ -62,16 +62,17 @@ var fixedyour = fixedyour || {};
         };
 
         var loadPageData = function(section, callback){
-            if(!loadingPage){
+            /*if(!loadingPage){
                 loadingPage = true;
                 $.get('load.php',{page:section}, function(data){
+		    console.log(data);
                     var sections = $.parseJSON(data);
                     if(typeof sections == 'object'){
                         applyPageData(sections);
                     }
                     loadingPage = false;
                 });
-            }
+            }*/
         };
 
         var applyPageData = function (sections){
@@ -100,7 +101,7 @@ var fixedyour = fixedyour || {};
 
 
         var addListeners = function(){
-            menuItems.click(loadPage);
+            //menuItems.click(loadPage);
         };
 
         var startQuotes = function(){
