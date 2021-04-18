@@ -62,29 +62,24 @@ nav#main_menu div a:focus {
 
 nav#main_menu div a div.menu-item span.icon {
     position: relative;
-    width: 24px;
-    height:24px;
+    width: 1.5rem;
+    height:1.5rem;
     background-size: auto 100%;
-    margin-right: 4px;
-    margin-top: 5px;
+    margin: 0.1rem;
 }
 
 nav#main_menu div a div.menu-item span.menu-text {
-    height: 24px;
+    /*height: 24px;*/
     position: relative;
-    top: -5px;
-}
-
-nav#main_menu div a div.menu-item {
-    margin: 0 auto;
+    top: -0.5rem;
 }
 
 footer{
     padding: 1em;
     text-align: center;
     width: 100%;
-    height: 8em;
-    line-height: 8em;
+    /*height: 8em;*/
+    /*line-height: 8em;*/
     background-color: #95A3A4;
     -webkit-box-shadow: 0 1px 5px 0 #95A3A4;
     box-shadow: 0 -1px 5px 0 #95A3A4;
