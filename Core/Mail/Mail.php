@@ -77,11 +77,6 @@ class Mail {
      *
      */
     public function sendMail(){
-
-//        var_dump(getenv('SENDGRID_API_KEY'));
-//        die();
-
-//        $mail = new PHPMailer();
         $mail = new SgMail();
         $mail->setFrom('postkontoret@fixedyour.net', 'Postkontoret hos Fixedyour.net');
         $mail->setSubject($this->subject);
@@ -93,7 +88,7 @@ class Mail {
         $mail->addContent('text/html',$this->content);
         $sg = new \SendGrid(getenv('SENDGRID_API_KEY'));
         try {
-            // While debug: $sg->send($mail);
+            $sg->send($mail);
             return true;
         } catch (\Exception $e) {
             return false;
