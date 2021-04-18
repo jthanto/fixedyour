@@ -2,6 +2,8 @@
 
 namespace fixedyour\Core\Mail;
 
+use SendGrid\Mail\Mail as SgMail;
+
 /**
  * Class Mail
  */
@@ -42,13 +44,14 @@ class Mail {
     private $errors;
 
     private $replyTo;
+    private $from;
     private $checkReplyTo;
 
 
     /**
      * Mail constructor.
      * @param $recipientsMail
-     * @param fromMail
+     * @param $fromMail
      * @param string $subject
      * @param string $content
      */
@@ -74,49 +77,34 @@ class Mail {
      *
      */
     public function sendMail(){
-        $mail = new \PHPMailer();
 
-        $this->setupSMTP($mail);
+//        var_dump(getenv('SENDGRID_API_KEY'));
+//        die();
 
-        $mail->From = $this->fromMail;
-        $mail->FromName = $this->fromName;
+//        $mail = new PHPMailer();
+        $mail = new SgMail();
+        $mail->setFrom('postkontoret@fixedyour.net', 'Postkontoret hos Fixedyour.net');
+        $mail->setSubject($this->subject);
+
         foreach($this->recipientMails as $mailAddress){
-            $mail->addAddress($mailAddress);
+            $mail->addTo($mailAddress);
         }
-        if(!empty($this->fromMail)){
-            $mail->addReplyTo($this->fromMail);
-        }
-        $mail->Subject = $this->subject;
-        $mail->Body = $this->content;
-        $status = $mail->send();
-	if(!$status){
-		echo $mail->ErrorInfo;	
-	} else {
-		return true;
-	}
-    }
 
-    /**
-     * @param $mail \PHPMailer
-     */
-    private function setupSMTP($mail){
-        $mail->addReplyTo($this->replyTo);
-        $mail->SMTPDebug = SMTP_DEBUG_LEVEL;
-        $mail->isSMTP();
-        $mail->Host = SMTP_HOST;
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USERNAME;
-        $mail->Password = SMTP_PASSWORD;
-        $mail->SMTPSecure = "ssl";
-        $mail->Port = SMTP_PORT;
-        $mail->isHTML(true);
+        $mail->addContent('text/html',$this->content);
+        $sg = new \SendGrid(getenv('SENDGRID_API_KEY'));
+        try {
+            // While debug: $sg->send($mail);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     /**
      * @param $moreRecipients
      */
     public function addRecipients($moreRecipients){
-        array_merge($this->recipientMails, $moreRecipients);
+        $this->recipientMails = array_merge($this->recipientMails, $moreRecipients);
     }
 
     /**
@@ -132,7 +120,6 @@ class Mail {
 
     public function setReplyTo($replyTo){
         $this->replyTo = $replyTo;
-        $this->checkReplyTo;
     }
 
     public static function isValidEmail($mail){

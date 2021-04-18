@@ -1,12 +1,13 @@
 <?php
 
 
-namespace fixedyour\Core\Datebase;
+namespace fixedyour\Core\Database;
 
 /**
  * Class Collection
  */
-class Collection extends ArrayObject{
+class Collection extends \ArrayObject{
+
 
 
 }

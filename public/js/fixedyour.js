@@ -40,7 +40,7 @@ var fixedyour = fixedyour || {};
 
         var initialize = function() {
             addListeners();
-            startQuotes();
+            // startQuotes();
             initContact();
             //doMagic
         };
@@ -104,12 +104,17 @@ var fixedyour = fixedyour || {};
             //menuItems.click(loadPage);
         };
 
-        var startQuotes = function(){
-            var setup = {url: 'quotes'};
-            // $.ajax({
-            //
-            // });
-        };
+        // var startQuotes = function(){
+        //     var setup = {url: 'quotes'};
+        // };
+
+        let show_message = function(message, title, close_text){
+            $modal = $('#message_modal')
+            $modal.find('.modal-header h5').html(title);
+            $modal.find('.modal-body').html(message);
+            $modal.find('.modal-footer').find('button').text((close_text && close_text.length > 0) ? close_text : 'Greit!');
+            $modal.modal('show');
+        }
 
         var initContact = function(){
             $(document).on('click', '#btnContactSend', function(){
@@ -121,34 +126,40 @@ var fixedyour = fixedyour || {};
                     content:$('#contactContent').find('textarea').val()
                 };
 
-                $.ajax('load.php', {
-                    method: 'post',
-                    dataType: 'json',
-                    data: postData,
-                    success: function(data){
-                        if(data.status === 'success'){
-                            $('#contactRecipient').find('input').css('border-bottom','#DEA241 2px solid');
-                            $('#contactContent').find('textarea').css('border-color','#ffd18b');
-                            alert('Takk for epost');
-                        } else if (data.status === 'error'){
-                            if(data.message.body && data.message.body.length){
-                                $('#contactContent').find('textarea').css('border-color','#FF0000');
-                            }
-                            if(data.message.from && data.message.from.length){
-                                $('#contactFrom').css('border-bottom','#FF0000 2px solid');
-                            }
 
-                            if(data.message.name && data.message.name.length){
-                                $('#contactName').css('border-bottom','#FF0000 2px solid');
-                            }
-                            if(data.message.replyto && data.message.replyto.length) {
-                                $('#contactFrom').css('border-bottom','#FF0000 2px solid');
-                            }
+                $.ajax({
+                    method: 'POST',
+                    url: '/',
+                    data: postData,
+                    dataType: 'json',
+                    cache: false,
+                }).done((data)=>{
+                    if(data.status === 'success'){
+                        $('#contactRecipient').find('input').css('border-bottom','#DEA241 2px solid');
+                        $('#contactContent').find('textarea').css('border-color','#ffd18b');
+                        show_message('Så hyggelig at du ville ta kontakt, jeg svarer deg så snart jeg har anledning!<br>Det kan også hende mailsendinga har litt hickups. Så kan hende du heller bør sende en vanlig mail. Men du skal ha takk for forsøket!', 'Takk for e-post! - kanskje..')
+                    } else if (data.status === 'error'){
+                        if(data.message.body && data.message.body.length){
+                            $('#contactContent').find('textarea').css('border-color','#FF0000');
                         }
-                    },
-                    error: function(){
-                        alert('Buuuu, ukjent feil :(');
-                    }});
+                        if(data.message.from && data.message.from.length){
+                            $('#contactFrom').css('border-bottom','#FF0000 2px solid');
+                        }
+
+                        if(data.message.name && data.message.name.length){
+                            $('#contactName').css('border-bottom','#FF0000 2px solid');
+                        }
+                        if(data.message.replyto && data.message.replyto.length) {
+                            $('#contactFrom').css('border-bottom','#FF0000 2px solid');
+                        }
+
+                        show_message(Object.values(data.message).join('<br>'), 'Uff da')
+                    }
+                }).fail((xhr, status, err )=>{
+                    show_message('Dette gikk ikke som planlagt. Prøv å sende mail på gamlemåten heller..', 'Aiaiai.', 'Skuffaaa!');
+                }).always(()=>{
+
+                })
                 });
         };
 

@@ -3,7 +3,7 @@ Thumbs.db
 /public/img/psd
 /classified/*
 .idea/
-
 /vendor/
 _config/config.php
 composer.lock
+sendgrid.env

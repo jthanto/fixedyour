@@ -17,8 +17,9 @@ class Response {
         {
             $responseData = json_encode($responseData);
         }
+        header('Content-type: application/json');
         echo $responseData;
-        die();
+        exit();
     }
 
 }

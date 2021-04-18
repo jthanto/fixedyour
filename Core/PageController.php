@@ -3,6 +3,7 @@
 namespace fixedyour\Core;
 
 use fixedyour\Blog\Controllers\BlogController;
+use fixedyour\Core\Models\Quote;
 
 /**
  * Class PageController
@@ -26,6 +27,7 @@ class PageController {
     const TPL_BLOG = 'Blog.mustache';
     const TPL_404 = '404.mustache';
     const TPL_ADMIN = 'admin.mustache';
+    const TPL_HOME = 'home.mustache';
 
     const TEMPLATE_OLD_DIR = 'templates/';
     const TEMPLATE_DIR = '../Core/Templates/';
@@ -60,44 +62,47 @@ class PageController {
         $renderedTemplates = [];
 
         if(empty($request)){
-            $templates = $page->getTemplates(self::TPL_ABOUT, self::TPL_CONTACT);
-            $renderedTemplates = array('left'=> $templates[0], 'right' => $templates[1], self::PAGE_ABOUT.'_active' => true);
+            $templates = $page->getTemplates(self::TPL_HOME);
+            $renderedTemplates = ['content' => $templates[0], self::PAGE_HOME.'_ACTIVE' => true];
         } else {
             switch($request[0]){
                 case self::PAGE_HOME:
                 case self::PAGE_ABOUT:
-                    $templates = $page->getTemplates(self::TPL_ABOUT, self::TPL_CONTACT);
-                    $renderedTemplates = array('left'=> $templates[0], 'right' => $templates[1], self::PAGE_ABOUT.'_active' => true);
+                    $templates = $page->getTemplates(self::TPL_HOME);
+                    $renderedTemplates = ['content' => $templates[0], self::PAGE_HOME.'_ACTIVE' => true];
                     break;
-                case self::PAGE_ADMIN:
-                    $templates = $page->getTemplates(self::TPL_ADMIN);
-                    $renderedTemplates = array('center'=> $templates[0], self::PAGE_ADMIN.'_active' => true);
-                    break;
+//                case self::PAGE_ADMIN:
+//                    $templates = $page->getTemplates(self::TPL_ADMIN);
+//                    $renderedTemplates = ['content'=> $templates[0], self::PAGE_ADMIN.'_active' => true];
+//                    break;
                 case self::PAGE_PROJECT:
                     $templates = $page->getTemplates(self::TPL_PROJECTS);
-                    $renderedTemplates = array('center'=> $templates[0], self::PAGE_PROJECT.'_active' => true);
+                    $renderedTemplates = ['content'=> $templates[0], self::PAGE_PROJECT.'_active' => true];
                     break;
                 case self::PAGE_CV:
                     $templates = $page->getTemplates(self::TPL_CV);
-                    $renderedTemplates = array('center'=> $templates[0], self::PAGE_CV.'_active' => true);
+                    $renderedTemplates = ['content'=> $templates[0], self::PAGE_CV.'_active' => true];
                     break;
                 case self::PAGE_BLOG:
-                    //$blog = new BlogController();
-                    //$templates = $blog->getFrontPage();
-		    $templates = 'Heiaaa bloggen';
-                    $renderedTemplates = array('center'=> $templates, self::PAGE_BLOG.'_active' => true);
+                    $blog = new BlogController();
+                    unset($request[0]); sort($request);
+                    $renderedTemplates = ['content' => $blog->route($request), self::PAGE_BLOG.'_active' => true];
                     break;
-		case 'timeout':
-			sleep(60);
-//			http_response_code(504);
-//			echo 'hei'; die;
-            }
-        }
+                case 'ineedzinfo':
+                    phpinfo();
+                    die();
+                case 'timeout':
+                    sleep(60);
+        //			http_response_code(504);
+        //			echo 'hei'; die;
+                    }
+                }
 
+        $quote = Quote::getRandomQuote();
         if(empty($renderedTemplates)) {
-            return $page->mustache->render($page->getSingleTemplate(self::TPL_FRAME), array('center' => $page->getSingleTemplate(self::TPL_404)));
+            return $page->mustache->render($page->getSingleTemplate(self::TPL_FRAME), ['content' => $page->getSingleTemplate(self::TPL_404), 'quote' => $quote]);
         } else {
-            return $page->mustache->render($page->getSingleTemplate(self::TPL_FRAME), $renderedTemplates);
+            return $page->mustache->render($page->getSingleTemplate(self::TPL_FRAME), array_merge($renderedTemplates, ['quote' => $quote]));
         }
     }
 

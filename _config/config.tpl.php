@@ -1,14 +1,18 @@
 <?php
 
 //Error reporting only cool for dev ;)
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 error_reporting(0);
 
-// PHPMailer
-define('SMTP_HOST', ''); //your smtp host
-define('SMTP_PORT', 587); // your smtp port
-define('SMTP_DEBUG_LEVEL', 0); // your wanted debug level
-define('SMTP_USERNAME', ''); // your username
-define('SMTP_PASSWORD', ''); // your password
+// Mail
 define('DEFAULT_FROM_MAIL', '');
+
+// Dbstuff
+define('DB_MYSQL_HOST', 'localhost');
+define('DB_MYSQL_PORT', '3306');
+define('DB_MYSQL_USER', '');
+define('DB_MYSQL_PASSWORD', '');
+
 
 ?>

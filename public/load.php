@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__ . '/../_config/config.php';
 
@@ -12,6 +13,7 @@ use fixedyour\Core\ActionController;
 if(isset($_POST) && isset($_POST['action'])){
     $action = filter_var($_POST['action'], FILTER_SANITIZE_STRING);
     ActionController::doAction($action);
+    die();
 }
 
 
