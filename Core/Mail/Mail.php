@@ -2,119 +2,64 @@
 
 namespace fixedyour\Core\Mail;
 
-use SendGrid\Mail\Mail as SgMail;
-
-/**
- * Class Mail
- */
-/**
- * Class Mail
- * @package fixedyour\Core\Mail
- */
-/**
- * Class Mail
- * @package fixedyour\Core\Mail
- */
 class Mail {
 
-    /**
-     * @var
-     */
-    private $recipientMails = [];
-    /**
-     * @var
-     */
-    private $fromMail;
-    /**
-     * @var
-     */
-    private $content;
-    /**
-     * @var
-     */
-    private $additionalHeaders;
-    /**
-     * @var
-     */
-    private $fromName;
-
-    /**
-     * @var
-     */
-    private $errors;
-
-    private $replyTo;
-    private $from;
-    private $checkReplyTo;
+    private $recipients = [];
+    private $from_name;
+    private $from_email;
+    private $content_text;
+    private $content_html;
+    private $subject;
+    private $replyto_email;
+    private $replyto_name;
 
 
-    /**
-     * Mail constructor.
-     * @param $recipientsMail
-     * @param $fromMail
-     * @param string $subject
-     * @param string $content
-     */
-    public function __construct($recipientsMail , $fromMail, $subject = '', $content = ''){
-        if(is_array($recipientsMail)){
-            $this->addRecipients($recipientsMail);
-        } else if(is_string($recipientsMail)){
-            $this->addRecipient($recipientsMail);
+    public function __construct(){
+    }
+
+    public function setSubject($subject){
+        $this->subject = $subject;
+        return $this;
+    }
+
+    public function setContent($content){
+        if($content != $text = strip_tags($content)){
+            $this->content_html = $content;
+            $this->content_text = $text;
+        } else {
+            $this->content_html = $this->content_text = $content;
         }
-        $this->fromMail = filter_var($fromMail, FILTER_SANITIZE_STRING);
-        $this->content = filter_var($content, FILTER_SANITIZE_STRING);
-        $this->subject = filter_var($subject, FILTER_SANITIZE_STRING);
+        return $this;
     }
 
-    /**
-     * @param $fromName
-     */
-    public function setFromName($fromName){
-        $this->fromName = $fromName;
+    public function setFrom($email, $name){
+        $this->from_email = $email;
+        $this->from_name = $name;
+        return $this;
     }
 
-    /**
-     *
-     */
-    public function sendMail(){
-        $mail = new SgMail();
-        $mail->setFrom('postkontoret@fixedyour.net', 'Postkontoret hos Fixedyour.net');
-        $mail->setSubject($this->subject);
+    public function setReplyTo($email, $name){
+        $this->replyto_email = $email;
+        $this->replyto_name = $name;
+        return $this;
+    }
 
-        foreach($this->recipientMails as $mailAddress){
-            $mail->addTo($mailAddress);
+    public function addRecipient($email, $name){
+        if($this->isValidEmail($email)){
+            $this->recipients[]=[
+                'email' => $email,
+                'name' => $name
+            ];
         }
+        return $this;
+    }
 
-        $mail->addContent('text/html',$this->content);
-        $sg = new \SendGrid(getenv('SENDGRID_API_KEY'));
-        try {
-            $sg->send($mail);
-            return true;
-        } catch (\Exception $e) {
-            return false;
+
+    public function addRecipients($recipients){
+        foreach($recipients as $recipient){
+            $this->addRecipient($recipient['email'], $recipient['name']);
         }
-    }
-
-    /**
-     * @param $moreRecipients
-     */
-    public function addRecipients($moreRecipients){
-        $this->recipientMails = array_merge($this->recipientMails, $moreRecipients);
-    }
-
-    /**
-     * @param $oneMoreRecipient
-     */
-    public function addRecipient($oneMoreRecipient){
-        $this->recipientMails[] = $oneMoreRecipient;
-    }
-
-    /**
-     * @return bool
-     */
-
-    public function setReplyTo($replyTo){
-        $this->replyTo = $replyTo;
+        return $this;
     }
 
     public static function isValidEmail($mail){
@@ -129,6 +74,48 @@ class Mail {
         return $return;
     }
 
+    private function send_mail($mail_body){
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_HEADER,true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Authorization: Bearer '.MAILSENDER_API_KEY,
+        ]);
+        curl_setopt($ch, CURLOPT_URL, 'https://api.mailersend.com/v1/email');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($mail_body));
+        $res = curl_exec($ch);
+        curl_close($ch);
+        return $res;
+    }
+
+    public function sendMail(){
+
+        $body = [];
+        foreach($this->recipients as $val){
+            $body['to'][] = ['email' => $val['email'], 'name' => $val['name']];
+        }
+        $body['from'] = [
+            'email' => $this->from_email,
+            'name' => $this->from_name
+        ];
+
+        if($this->replyto_email && $this->replyto_name){
+            $body['reply_to'] = ['email' => $this->replyto_email, 'name' => $this->replyto_name];
+        }
+        $body['subject'] = $this->subject;
+        $body['text'] = $this->content_text;
+        $body['html'] = $this->content_html;
+
+        try {
+            $response = $this->send_mail($body);
+            file_put_contents(ROOT_DIR.'/debug/mailstatus.txt', $response."\n", FILE_APPEND); //This is for debug..
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 
 
 

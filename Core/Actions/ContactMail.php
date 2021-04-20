@@ -4,6 +4,7 @@ namespace fixedyour\Core\Actions;
 
 use fixedyour\Core\Mail\Mail;
 use fixedyour\Core\Response\Response;
+use fixedyour\Core\View\View;
 
 
 class ContactMail {
@@ -20,13 +21,14 @@ class ContactMail {
 
         if($this->validateMailDetails($mailDetails)){
             $response = [];
-            $mail = new Mail(
-                DEFAULT_FROM_MAIL,
-                DEFAULT_FROM_MAIL,
-                $mailDetails['subject'],
-                $mailDetails['body']
-            );
-            $mail->setReplyTo($mailDetails['replyto']);
+            $mail = new Mail();
+
+            $content = View::parse(ROOT_DIR.'/Core/Templates/Actions/contact.php', $mailDetails);
+            $mail->addRecipient(DEFAULT_CONTACT_RECIPIENT_MAIL, DEFAULT_CONTACT_RECIPIENT_NAME)
+                ->setFrom(DEFAULT_FROM_MAIL, DEFAULT_CONTACT_FROM_NAME)
+                ->setReplyTo($mailDetails['replyto'], $mailDetails['name'])
+                ->setSubject($mailDetails['subject'])
+                ->setContent($content);
             if($mail->sendMail())
             {
                 $response['status'] = 'success';

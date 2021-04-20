@@ -6,6 +6,11 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 // Mail
+define('MAILSENDER_API_KEY', '');
+define('DEFAULT_CONTACT_RECIPIENT_NAME', '');
+define('DEFAULT_CONTACT_RECIPIENT_MAIL', '');
+define('DEFAULT_CONTACT_FROM_NAME', 'Kontaktskjema');
+define('DEFAULT_FROM_NAME', 'Fixedyour.net');
 define('DEFAULT_FROM_MAIL', '');
 
 // Dbstuff

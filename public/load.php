@@ -6,6 +6,8 @@ require_once __DIR__ . '/../_config/config.php';
 use fixedyour\Core\PageController;
 use fixedyour\Core\ActionController;
 
+define('ROOT_DIR', realpath(__DIR__.'/../'));
+
 /* This will be my router for now ;) */
 
 //print_r($_POST);
