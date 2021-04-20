@@ -135,8 +135,8 @@ var fixedyour = fixedyour || {};
                     cache: false,
                 }).done((data)=>{
                     if(data.status === 'success'){
-                        $('#contactRecipient').find('input').css('border-bottom','#DEA241 2px solid');
-                        $('#contactContent').find('textarea').css('border-color','#ffd18b');
+                        $('#contactRecipient').find('input').css('border-bottom','#697268 2px solid');
+                        $('#contactContent').find('textarea').css('border-color','#697268');
                         show_message('Så hyggelig at du ville ta kontakt, jeg svarer deg så snart jeg har anledning!<br>Det kan også hende mailsendinga har litt hickups. Så kan hende du heller bør sende en vanlig mail. Men du skal ha takk for forsøket!', 'Takk for e-post! - kanskje..')
                     } else if (data.status === 'error'){
                         if(data.message.body && data.message.body.length){
